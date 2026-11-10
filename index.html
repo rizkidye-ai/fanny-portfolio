@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portofolio Fanny Fetalya: administrasi, pengelolaan data, dan komunikasi.">
+<title>Fanny Fetalya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: arched-window hero, then a soft rose paper column with a ribbon timeline */
+:root{
+  --bg:#fff6f9;
+  --paper:#ffffff;
+  --petal:#fde3ec;
+  --blush:#f9c9da;
+  --rose:#d9467c;
+  --rose-deep:#a82a5c;
+  --ink:#45192f;
+  --muted:#8a5a72;
+  --line:#f3d3df;
+  --shadow:0 18px 40px -22px rgba(168,42,92,.35);
+  --display:"Fraunces", "Georgia", "Times New Roman", serif;
+  --body:"Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1d0e16; --paper:#28141e; --petal:#3a1c2b; --blush:#5a2a42;
+    --rose:#ff8ab4; --rose-deep:#ffb3cf; --ink:#fbe8f0; --muted:#d3a6bb; --line:#45233a;
+    --shadow:0 18px 40px -22px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1d0e16; --paper:#28141e; --petal:#3a1c2b; --blush:#5a2a42;
+  --rose:#ff8ab4; --rose-deep:#ffb3cf; --ink:#fbe8f0; --muted:#d3a6bb; --line:#45233a;
+  --shadow:0 18px 40px -22px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.65;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:0 48px;
+  overflow-x:hidden;
+  position:relative;
+}
+body::after{
+  content:"";
+  position:absolute; inset:0 0 auto 0; height:620px; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(420px 320px at 85% 10%, var(--petal), transparent 70%),
+    radial-gradient(360px 260px at 5% 40%, var(--petal), transparent 70%);
+}
+.wrap{max-width:1040px; margin:0 auto}
+h1,h2,h3{font-family:var(--display); font-weight:600; text-wrap:balance; margin:0; line-height:1.15}
+p{margin:0}
+a{color:var(--rose)}
+:focus-visible{outline:2px solid var(--rose); outline-offset:3px; border-radius:6px}
+
+/* top bar */
+.top{display:flex; justify-content:space-between; align-items:center; padding-block:22px; gap:16px; flex-wrap:wrap}
+.mark{font-family:var(--display); font-style:italic; font-size:1.35rem; color:var(--rose-deep)}
+.nav{display:flex; gap:6px; flex-wrap:wrap}
+.nav a{color:var(--muted); text-decoration:none; font-size:.85rem; font-weight:500; padding:6px 12px; border-radius:999px}
+.nav a:hover{background:var(--petal); color:var(--rose-deep)}
+
+/* hero */
+.hero{display:grid; grid-template-columns:1.25fr .9fr; gap:48px; align-items:center; padding-block:40px 64px}
+.hero > *{min-width:0}
+.eyebrow{font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--rose); font-weight:700}
+.hero h1{font-size:clamp(2.6rem, 7vw, 4.6rem); margin-top:14px; letter-spacing:-.01em}
+.hero h1 em{font-style:italic; font-weight:400; color:var(--rose)}
+.lede{margin-top:20px; font-size:1.08rem; color:var(--muted); max-width:34em}
+.focus{display:flex; flex-wrap:wrap; gap:8px; margin-top:24px}
+.focus span{background:var(--paper); border:1px solid var(--line); color:var(--rose-deep); font-size:.85rem; font-weight:600; padding:7px 14px; border-radius:999px}
+.cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:30px}
+.btn{font:inherit; font-weight:600; font-size:.92rem; border:0; cursor:pointer; padding:12px 22px; border-radius:999px; text-decoration:none; display:inline-flex; align-items:center; gap:8px}
+.btn-main{background:var(--rose); color:var(--paper)}
+.btn-main:hover{background:var(--rose-deep)}
+.btn-soft{background:var(--petal); color:var(--rose-deep)}
+.btn-soft:hover{background:var(--blush)}
+
+.arch-box{position:relative; justify-self:center; width:100%; max-width:330px}
+.arch{
+  aspect-ratio:3/4; max-width:100%;
+  border-radius:999px 999px 28px 28px;
+  background:linear-gradient(165deg, var(--blush), var(--rose) 120%);
+  display:grid; place-items:center; position:relative; overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.arch::before{
+  content:""; position:absolute; inset:14px; border-radius:999px 999px 18px 18px;
+  border:1.5px solid rgba(255,255,255,.55);
+}
+.arch{place-items:start center}
+.initials{position:absolute; top:6%; left:0; right:0; text-align:center; font-family:var(--display); font-style:italic; font-size:clamp(6rem, 16vw, 9rem); color:rgba(255,255,255,.28); line-height:1; letter-spacing:-.04em}
+.photo{position:absolute; left:50%; bottom:0; width:112%; max-width:none; height:auto; transform:translateX(-50%); z-index:1; filter:drop-shadow(0 10px 22px rgba(120,20,60,.25))}
+.arch::before{z-index:2}
+.flower{position:absolute; width:120px; height:120px; top:18px; left:-34px; opacity:.4}
+.badge{
+  position:absolute; left:-18px; bottom:42px;
+  background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:12px 16px;
+  box-shadow:var(--shadow); display:flex; gap:12px; align-items:center;
+}
+.badge b{font-family:var(--display); font-size:1.7rem; color:var(--rose); line-height:1; font-variant-numeric:tabular-nums}
+.badge small{display:block; font-size:.74rem; color:var(--muted); line-height:1.35}
+.badge strong{display:block; font-size:.84rem; color:var(--ink)}
+.badge-top{left:auto; right:-14px; top:36px; bottom:auto; padding:9px 14px; font-size:.8rem; font-weight:600; color:var(--rose-deep)}
+
+/* sections */
+section{padding-block:56px; border-top:1px solid var(--line)}
+.sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:30px; flex-wrap:wrap}
+.sec-head h2{font-size:clamp(1.8rem, 4vw, 2.4rem)}
+.sec-head h2 em{font-style:italic; font-weight:400; color:var(--rose)}
+.sec-head p{color:var(--muted); font-size:.95rem}
+
+/* about */
+.about{display:grid; grid-template-columns:1.4fr 1fr; gap:40px}
+.about > *{min-width:0}
+.about-text p{font-size:1.06rem; max-width:62ch}
+.about-text p + p{margin-top:14px; color:var(--muted)}
+.facts{display:grid; grid-template-columns:1fr 1fr; gap:14px; align-content:start}
+.fact{background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:18px}
+.fact b{display:block; font-family:var(--display); font-size:1.9rem; color:var(--rose); line-height:1.1; font-variant-numeric:tabular-nums}
+.fact span{font-size:.85rem; color:var(--muted)}
+
+/* timeline */
+.timeline{list-style:none; margin:0; padding:0; position:relative; display:grid; gap:22px}
+.timeline::before{content:""; position:absolute; left:9px; top:8px; bottom:8px; width:2px; background:linear-gradient(var(--blush), var(--line))}
+.item{position:relative; padding-left:42px}
+.item::before{
+  content:""; position:absolute; left:0; top:22px; width:20px; height:20px; border-radius:50%;
+  background:var(--paper); border:5px solid var(--rose);
+}
+.item.past::before{border-color:var(--blush)}
+.card{background:var(--paper); border:1px solid var(--line); border-radius:22px; padding:22px 24px}
+.card-head{display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap; align-items:baseline}
+.card h3{font-size:1.25rem}
+.role{color:var(--rose-deep); font-weight:600; font-size:.95rem; margin-top:2px}
+.when{font-size:.8rem; font-weight:600; color:var(--muted); background:var(--petal); padding:4px 12px; border-radius:999px; white-space:nowrap; font-variant-numeric:tabular-nums}
+.now{background:var(--rose); color:var(--paper)}
+.card ul{margin:14px 0 0; padding:0; list-style:none; display:grid; gap:8px}
+.card li{position:relative; padding-left:22px; color:var(--muted); font-size:.96rem}
+.card li::before{content:"✿"; position:absolute; left:0; top:0; color:var(--rose); font-size:.8rem; line-height:1.9}
+
+/* org grid */
+.grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+.grid3 > *{min-width:0}
+.org{display:flex; flex-direction:column; gap:10px}
+.org .when{align-self:flex-start}
+.org h3{font-size:1.12rem}
+.org .unit{font-size:.85rem; color:var(--muted)}
+
+/* edu */
+.edu{display:grid; grid-template-columns:1.6fr 1fr; gap:18px}
+.edu > *{min-width:0}
+.edu .card.main{background:linear-gradient(150deg, var(--paper), var(--petal))}
+.thesis{margin-top:16px; padding:14px 18px; border-left:3px solid var(--rose); background:var(--paper); border-radius:0 14px 14px 0; font-family:var(--display); font-style:italic; font-size:1rem; color:var(--ink)}
+.thesis small{display:block; font-family:var(--body); font-style:normal; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--rose); font-weight:700; margin-bottom:4px}
+
+/* skills */
+.skills{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+.skills > *{min-width:0}
+.skills h3{font-size:1.1rem; margin-bottom:14px}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{background:var(--petal); color:var(--rose-deep); font-size:.85rem; font-weight:600; padding:6px 13px; border-radius:999px}
+.lang{display:grid; gap:14px}
+.lang-row{display:flex; justify-content:space-between; align-items:center; gap:10px; font-weight:600}
+.dots{display:flex; gap:5px}
+.dots i{width:11px; height:11px; border-radius:50%; background:var(--line)}
+.dots i.on{background:var(--rose)}
+.lang-row small{display:block; font-weight:500; color:var(--muted); font-size:.8rem}
+
+/* awards */
+.awards{list-style:none; padding:0; margin:0; display:grid; gap:14px}
+.award{display:grid; grid-template-columns:auto 1fr auto; gap:18px; align-items:center; background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:18px 22px}
+.award > *{min-width:0}
+.medal{width:44px; height:44px; border-radius:50%; background:var(--petal); display:grid; place-items:center; color:var(--rose)}
+.award b{display:block; font-size:1rem}
+.award span{color:var(--muted); font-size:.88rem}
+.award .when{justify-self:end}
+
+/* contact */
+.contact{
+  margin-top:20px; border-radius:32px; padding:48px 40px; text-align:left;
+  background:linear-gradient(135deg, var(--rose), var(--rose-deep));
+  color:#fff; position:relative; overflow:hidden;
+}
+.contact h2{font-size:clamp(1.9rem, 4.5vw, 2.8rem); color:#fff}
+.contact h2 em{font-weight:400}
+.contact p{margin-top:10px; opacity:.9; max-width:46ch}
+.contact-rows{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px}
+.c-item{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3); border-radius:18px; padding:10px 10px 10px 18px; min-width:0; max-width:100%}
+.c-item div{min-width:0}
+.c-item small{display:block; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; opacity:.8}
+.c-item span{font-weight:600; user-select:all; overflow-wrap:anywhere}
+.copy{font:inherit; font-size:.8rem; font-weight:700; border:0; background:#fff; color:#a82a5c; padding:8px 14px; border-radius:999px; cursor:pointer; flex-shrink:0}
+.copy:hover{background:#ffe3ee}
+.contact .flower{width:220px; height:220px; right:-50px; bottom:-60px; bottom:-60px; opacity:.18}
+footer{text-align:center; color:var(--muted); font-size:.82rem; margin-top:34px}
+
+/* motion */
+@keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+@keyframes sway{0%,100%{transform:rotate(0)}50%{transform:rotate(14deg)}}
+.hero-text > *{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero-text > *:nth-child(2){animation-delay:.06s}
+.hero-text > *:nth-child(3){animation-delay:.12s}
+.hero-text > *:nth-child(4){animation-delay:.18s}
+.hero-text > *:nth-child(5){animation-delay:.24s}
+.flower{animation:sway 9s ease-in-out infinite}
+.card, .fact, .award{transition:transform .25s ease, box-shadow .25s ease}
+.card:hover, .award:hover{transform:translateY(-3px); box-shadow:var(--shadow)}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important; transition:none!important}
+}
+
+/* responsive */
+@media (max-width: 860px){
+  .hero{grid-template-columns:1fr; gap:40px; padding-top:16px}
+  .arch-box{max-width:280px}
+  .about, .edu{grid-template-columns:1fr}
+  .grid3, .skills{grid-template-columns:1fr}
+}
+@media (max-width: 520px){
+  .nav{display:none}
+  .badge{left:-6px}
+  .badge-top{right:-6px}
+  .facts{grid-template-columns:1fr 1fr}
+  .card{padding:18px}
+  .award{grid-template-columns:auto 1fr}
+  .award .when{grid-column:2; justify-self:start}
+  .contact{padding:34px 22px; border-radius:26px}
+  .c-item{width:100%; justify-content:space-between}
+}
+</style>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="flower" viewBox="0 0 100 100">
+      <g fill="#fff">
+        <ellipse cx="50" cy="24" rx="15" ry="24"/>
+        <ellipse cx="50" cy="76" rx="15" ry="24"/>
+        <ellipse cx="24" cy="50" rx="24" ry="15"/>
+        <ellipse cx="76" cy="50" rx="24" ry="15"/>
+      </g>
+      <circle cx="50" cy="50" r="10" fill="#ffd1e1"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <div class="mark">Fanny Fetalya</div>
+    <nav class="nav" aria-label="Navigasi">
+      <a href="#tentang">Tentang</a>
+      <a href="#pengalaman">Pengalaman</a>
+      <a href="#pendidikan">Pendidikan</a>
+      <a href="#keahlian">Keahlian</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">Portofolio · Aceh, Indonesia</div>
+      <h1>Halo, saya <em>Fanny Fetalya</em></h1>
+      <p class="lede">Lulusan terbaik Hukum Tata Negara dengan pengalaman di administrasi, pengelolaan data, dan layanan komunikasi. Saya senang bekerja dengan rapi, teliti, dan berkoordinasi dengan banyak pihak.</p>
+      <div class="focus">
+        <span>Administrasi</span>
+        <span>Pengelolaan Data</span>
+        <span>Kesekretariatan</span>
+        <span>Keuangan Organisasi</span>
+        <span>Komunikasi</span>
+      </div>
+      <div class="cta">
+        <a class="btn btn-main" href="#kontak">Hubungi saya</a>
+        <a class="btn btn-soft" href="#pengalaman">Lihat pengalaman</a>
+      </div>
+    </div>
+
+    <div class="arch-box">
+      <div class="arch">
+        <span class="initials" aria-hidden="true">FF</span>
+        <svg class="flower" aria-hidden="true"><use href="#flower"/></svg>
+        <img class="photo" src="foto.webp" alt="Foto Fanny Fetalya" width="600" height="800">
+      </div>
+      <div class="badge">
+        <b>3,69</b>
+        <div><strong>Cum Laude</strong><small>IPK dari 4,00</small></div>
+      </div>
+      <div class="badge badge-top">✿ Lulusan Terbaik 2023</div>
+    </div>
+  </div>
+
+  <section id="tentang">
+    <div class="sec-head"><h2>Tentang <em>saya</em></h2></div>
+    <div class="about">
+      <div class="about-text">
+        <p>Saya lulusan terbaik S1 Hukum Tata Negara, Universitas Islam Negeri Ar-Raniry Banda Aceh, dengan yudisium Cum Laude. Pengalaman saya mencakup administrasi, pengelolaan data, keuangan organisasi, kesekretariatan, dan layanan komunikasi.</p>
+        <p>Saya terbiasa mengelola dokumen dan data secara teliti, berkoordinasi dengan pihak internal maupun eksternal, serta mengoperasikan Microsoft Office. Saya mudah beradaptasi dan siap berkontribusi di lingkungan kerja yang dinamis, sambil terus belajar dan berkembang.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>3,69</b><span>IPK kumulatif, Cum Laude</span></div>
+        <div class="fact"><b>3</b><span>Pengalaman kerja &amp; magang</span></div>
+        <div class="fact"><b>3</b><span>Jabatan organisasi kampus</span></div>
+        <div class="fact"><b>2</b><span>Bahasa: Indonesia &amp; Inggris</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pengalaman">
+    <div class="sec-head"><h2>Pengalaman <em>kerja</em></h2><p>Dari yang terbaru</p></div>
+    <ol class="timeline">
+      <li class="item">
+        <article class="card">
+          <div class="card-head">
+            <div><h3>FIFGROUP Cabang Meulaboh</h3><div class="role">Admin SF ID</div></div>
+            <span class="when now">2025 – sekarang</span>
+          </div>
+          <ul>
+            <li>Melakukan aktivasi data FGC konsumen yang telah terdata pada sistem web perusahaan.</li>
+            <li>Mengelola data konsumen, baik data RO maupun data baru, agar tidak terjadi duplikasi data.</li>
+            <li>Menangani komunikasi dengan pelanggan melalui telepon dan WhatsApp serta memberikan informasi yang dibutuhkan.</li>
+          </ul>
+        </article>
+      </li>
+      <li class="item past">
+        <article class="card">
+          <div class="card-head">
+            <div><h3>Pekan Olahraga Nasional</h3><div class="role">Liaison Officer</div></div>
+            <span class="when">Agu – Sep 2024</span>
+          </div>
+          <ul>
+            <li>Bertindak sebagai contact person bagi pihak internal maupun eksternal.</li>
+            <li>Membantu pelaksanaan briefing kepada pihak internal maupun eksternal.</li>
+            <li>Mengidentifikasi kendala komunikasi dalam organisasi.</li>
+          </ul>
+        </article>
+      </li>
+      <li class="item past">
+        <article class="card">
+          <div class="card-head">
+            <div><h3>Kantor Satuan Polisi Pamong Praja dan WH</h3><div class="role">Magang, Bidang Kesekretariatan</div></div>
+            <span class="when">Jan – Feb 2022</span>
+          </div>
+          <ul>
+            <li>Membantu staf admin mengelola dokumen, data, dan kebutuhan administratif kantor.</li>
+            <li>Membantu mendata absensi pegawai kantor.</li>
+          </ul>
+        </article>
+      </li>
+    </ol>
+  </section>
+
+  <section id="organisasi">
+    <div class="sec-head"><h2>Pengalaman <em>organisasi</em></h2></div>
+    <div class="grid3">
+      <article class="card org">
+        <span class="when">2022 – 2023</span>
+        <h3>Wakil Bendahara Umum</h3>
+        <div class="unit">Senat Mahasiswa Fakultas Syariah dan Hukum (SEMA FSH)</div>
+        <ul>
+          <li>Bertanggung jawab atas pengelolaan keuangan organisasi.</li>
+          <li>Melaksanakan program kerja untuk mengembangkan minat dan bakat mahasiswa.</li>
+        </ul>
+      </article>
+      <article class="card org">
+        <span class="when">2022 – 2023</span>
+        <h3>Ketua Bidang Riset dan Teknologi</h3>
+        <div class="unit">Himpunan Mahasiswa Prodi Hukum Tata Negara (HMPS HTN)</div>
+        <ul>
+          <li>Menyusun dan melaksanakan program kerja bidang riset dan teknologi.</li>
+          <li>Berpartisipasi dan mendukung kegiatan himpunan.</li>
+        </ul>
+      </article>
+      <article class="card org">
+        <span class="when">2021 – 2022</span>
+        <h3>Anggota Humas</h3>
+        <div class="unit">Himpunan Mahasiswa Prodi Hukum Tata Negara (HMPS HTN)</div>
+        <ul>
+          <li>Membangun dan memelihara citra organisasi melalui program kerja humas.</li>
+          <li>Mendukung kegiatan serta program himpunan.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="pendidikan">
+    <div class="sec-head"><h2>Pendidikan</h2></div>
+    <div class="edu">
+      <article class="card main">
+        <div class="card-head">
+          <div><h3>UIN Ar-Raniry Banda Aceh</h3><div class="role">S1 Hukum Tata Negara</div></div>
+          <span class="when">2019 – 2023</span>
+        </div>
+        <ul>
+          <li>IPK kumulatif 3,69 / 4,00, lulusan terbaik dengan yudisium Cum Laude.</li>
+          <li>Dipercaya sebagai asisten akademik: mengelola data mahasiswa yang akan sidang dan membantu prodi menyusun penjadwalan mata kuliah.</li>
+        </ul>
+        <div class="thesis">
+          <small>Skripsi</small>
+          Penertiban Pengemis di Kota Banda Aceh Menurut Qanun Kota Banda Aceh Nomor 6 Tahun 2018 tentang Penyelenggaraan Ketertiban Umum dan Ketenteraman Masyarakat dalam Fiqh Siyasah
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div><h3>SMAN 4 Wira Bangsa</h3><div class="role">Jurusan IPA</div></div>
+          <span class="when">2016 – 2019</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="keahlian">
+    <div class="sec-head"><h2>Keahlian</h2></div>
+    <div class="skills">
+      <article class="card">
+        <h3>Hard skill</h3>
+        <div class="chips">
+          <span class="chip">Microsoft Word</span>
+          <span class="chip">Microsoft Excel</span>
+          <span class="chip">Microsoft PowerPoint</span>
+          <span class="chip">Administrasi</span>
+          <span class="chip">Pengelolaan data</span>
+          <span class="chip">Editing foto &amp; video</span>
+        </div>
+      </article>
+      <article class="card">
+        <h3>Soft skill</h3>
+        <div class="chips">
+          <span class="chip">Adaptasi</span>
+          <span class="chip">Penyelesaian masalah</span>
+          <span class="chip">Kepemimpinan</span>
+          <span class="chip">Komunikasi</span>
+          <span class="chip">Manajemen waktu</span>
+        </div>
+      </article>
+      <article class="card">
+        <h3>Bahasa</h3>
+        <div class="lang">
+          <div class="lang-row">
+            <div>Indonesia<small>Aktif</small></div>
+            <div class="dots" aria-label="5 dari 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          </div>
+          <div class="lang-row">
+            <div>Inggris<small>Cukup</small></div>
+            <div class="dots" aria-label="3 dari 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="penghargaan">
+    <div class="sec-head"><h2>Penghargaan <em>&amp; pelatihan</em></h2></div>
+    <ul class="awards">
+      <li class="award">
+        <div class="medal" aria-hidden="true">✿</div>
+        <div><b>Lulusan Terbaik, Yudisium Cum Laude (IPK 3,69)</b><span>Fakultas Syariah dan Hukum, UIN Ar-Raniry</span></div>
+        <span class="when">2023</span>
+      </li>
+      <li class="award">
+        <div class="medal" aria-hidden="true">✿</div>
+        <div><b>Sertifikat Penghargaan Wakil Bendahara SEMA FSH</b><span>Periode 2022/2023, UIN Ar-Raniry</span></div>
+        <span class="when">2023</span>
+      </li>
+      <li class="award">
+        <div class="medal" aria-hidden="true">✿</div>
+        <div><b>Pelatihan Bimbingan Karier bagi Mahasiswa Tingkat Akhir dan Fresh Graduate</b><span>UIN Ar-Raniry, 12–14 September 2023</span></div>
+        <span class="when">2023</span>
+      </li>
+    </ul>
+  </section>
+
+  <div class="contact" id="kontak">
+    <h2>Mari <em>terhubung</em></h2>
+    <p>Saya terbuka untuk peluang kerja dan kolaborasi. Silakan hubungi saya melalui email atau telepon.</p>
+    <div class="contact-rows">
+      <div class="c-item">
+        <div><small>Email</small><span id="v-email">fannyfetalya@gmail.com</span></div>
+        <button class="copy" type="button" id="copy-email" data-target="v-email">Salin</button>
+      </div>
+      <div class="c-item">
+        <div><small>Telepon / WhatsApp</small><span id="v-phone">0822 3783 0037</span></div>
+        <button class="copy" type="button" id="copy-phone" data-target="v-phone">Salin</button>
+      </div>
+      <div class="c-item">
+        <div><small>Domisili</small><span>Aceh, Indonesia</span></div>
+      </div>
+    </div>
+    <svg class="flower" aria-hidden="true"><use href="#flower"/></svg>
+  </div>
+
+  <footer>© 2026 Fanny Fetalya</footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var el = document.getElementById(btn.dataset.target);
+    var text = el.textContent.trim();
+    function done(){ btn.textContent = 'Tersalin'; setTimeout(function(){ btn.textContent = 'Salin'; }, 1600); }
+    function fallback(){
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Tekan Ctrl+C';
+      setTimeout(function(){ btn.textContent = 'Salin'; }, 2200);
+    }
+    try {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } catch(e){ fallback(); }
+  });
+});
+</script>
+
+</body>
+</html>
